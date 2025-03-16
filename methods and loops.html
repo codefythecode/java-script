@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Numbers & Date using JS</title>
+</head>
+<body>
+
+  <h2>JavaScript Project: Random Numbers, Rounded Value & Date</h2>
+
+  <h3>1. Random Numbers from 1 to 10</h3>
+  <p id="numberList"></p>
+
+  <h3>2. A Random Rounded Number</h3>
+  <p id="randomRounded"></p>
+
+  <h3>3. Current Date</h3>
+  <p id="currentDate"></p>
+
+  <script>
+    // Task 1: Print random numbers from 1 to 10 using a loop
+    var numberList = "";
+    for (var i = 1; i <= 10; i++) {
+      var rand = Math.floor(Math.random() * 100); // random number from 0 to 99
+      numberList += "Random number " + i + ": " + rand + "<br>";
+    }
+    document.getElementById("numberList").innerHTML = numberList;
+
+    // Task 2: Generate a single rounded random number
+    var rawRandom = Math.random() * 100;
+    var roundedRandom = Math.round(rawRandom);
+    document.getElementById("randomRounded").innerHTML = "Rounded Random Number: " + roundedRandom;
+
+    // Task 3: Show today's date
+    var today = new Date();
+    document.getElementById("currentDate").innerHTML = "Today's Date: " + today.toDateString();
+  </script>
+
+</body>
+</html>
