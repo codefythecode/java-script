@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>JavaScript Classes and Inheritance Example</h2>
+  
+  <div id="details"></div>
+  <div id="greetings"></div>
+
+  <script>
+    // Parent class with properties and methods
+    class Student {
+      constructor(name) {
+        this.studentName = name; // Property
+      }
+      // Static method
+      static hello() {
+        return "Hello!";
+      }
+      // Non-static method
+      present() {
+        return "My name is " + this.studentName;
+      }
+    }
+
+    // Child class inheriting from Student class
+    class Grade extends Student {
+      constructor(name, grade) {
+        super(name); // Access parent class property
+        this.studentGrade = grade; // New property
+      }
+      // Method for the child class
+      show() {
+        return this.present() + ", from " + this.studentGrade;
+      }
+    }
+
+    // Create an object for the child class
+    let myStudent = new Grade("Tina", "Grade 5");
+
+    // Access and display the method of the child class
+    document.getElementById("details").innerHTML = myStudent.show();
+
+    // Access the static method from the parent class
+    document.getElementById("greetings").innerHTML = Student.hello();
+  </script>
+</body>
+</html>
