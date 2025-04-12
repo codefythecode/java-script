@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Error Handling Example</title>
+</head>
+<body>
+    <h2>JavaScript Error Handling and Arrow Function</h2>
+    <p id="result">The result will be displayed here.</p>
+
+    <script>
+        // Step 1: Define an arrow function for a calculation
+        const product = (a, b) => a * b;
+
+        // Step 2: Try and catch block to demonstrate error handling
+        try {
+            // Intentionally causing an error
+            document.getElementById("res").innerHTML = product(5, 10);
+        } catch (err) {
+            // Handling the error and displaying the error message
+            document.getElementById("result").innerHTML = "Error: " + err.message;
+        }
+    </script>
+</body>
+</html>
