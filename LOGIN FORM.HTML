@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Registration Form</title>
+    <style>
+        /* Responsive and clean design */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            width: 40%;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #errorMessages {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        #successMessage {
+            color: green;
+            font-weight: bold;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Advanced User Registration Form</h1>
+    <div class="container">
+        <form id="registrationForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="18" max="100" required>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p id="errorMessages"></p>
+        <p id="successMessage"></p>
+    </div>
+
+    <script>
+        // Helper function to validate email format
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        // Helper function to simulate password hashing
+        function hashPassword(password) {
+            return btoa(password); // Base64 encoding as mock password hashing
+        }
+
+        // Simulate an API request
+        async function simulateApiRequest(data) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({ success: true }); // Simulate a successful API response
+                }, 1000); // 1-second delay
+            });
+        }
+
+        // Main form submission handler
+        document.getElementById("registrationForm").addEventListener("submit", async (event) => {
+            event.preventDefault(); // Prevent form submission
+
+            // Clear previous messages
+            const errorMessages = document.getElementById("errorMessages");
+            const successMessage = document.getElementById("successMessage");
+            errorMessages.innerHTML = "";
+            successMessage.innerHTML = "";
+
+            // Collect form data
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const age = document.getElementById("age").value;
+
+            // Validate inputs
+            let errors = [];
+            if (username.length < 3) {
+                errors.push("Username must be at least 3 characters.");
+            }
+            if (!validateEmail(email)) {
+                errors.push("Invalid email format.");
+            }
+            if (age < 18 || age > 100) {
+                errors.push("Age must be between 18 and 100.");
+            }
+            if (password.length < 8) {
+                errors.push("Password must be at least 8 characters long.");
+            }
+
+            // Display errors if any
+            if (errors.length > 0) {
+                errorMessages.innerHTML = errors.join("<br>");
+                return;
+            }
+
+            // Simulate password hashing and API request
+            const hashedPassword = hashPassword(password);
+            const userData = {
+                username,
+                email,
+                age,
+                password: hashedPassword,
+            };
+
+            // Simulate API interaction
+            try {
+                const response = await simulateApiRequest(userData);
+                if (response.success) {
+                    successMessage.innerHTML = "Registration successful!";
+                    errorMessages.innerHTML = "";
+                    document.getElementById("registrationForm").reset(); // Clear form
+                }
+            } catch (error) {
+                errorMessages.innerHTML = "Error: Could not register user. Please try again later.";
+                console.error("API Error:", error);
+            }
+        });
+    </script>
+</body>
+</html>
