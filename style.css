@@ -1,7 +1,24 @@
-.myslides{
-    height: 500px;
-    width: 100%;
+body{
+    margin:0;
+    font-size:16px;
+    font-weight: 400;
+    background-color: #c8bb89;
 }
-img{
-    width:200px;
+.cover{
+    background-image:url(BULDING.jpeg);
+    height:400px;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.section{
+   text-align: left;
+   padding :50px 20px;
+    background-color: #f0f0f0;
+    color: bisque;
+}
+p{
+    font-size:20px;
+    text-align: left;
 }
